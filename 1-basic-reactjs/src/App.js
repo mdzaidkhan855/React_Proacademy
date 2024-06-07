@@ -1,6 +1,20 @@
+import React from 'react';
+import './App.css'
+import ProductList from './components/ProductList/ProductList';
+import ProductForm from './components/CreateProduct/ProductForm';
+
+
 
 function App(){
-  return <h2>This is app component</h2>
+
+  
+  return (
+    <div>
+      <ProductForm></ProductForm>
+      <ProductList></ProductList>
+    </div>
+    
+  )
 }
 
 export default App;

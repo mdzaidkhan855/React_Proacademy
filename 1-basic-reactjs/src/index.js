@@ -5,7 +5,10 @@ import React from 'react';
 
 import ReactDOM from 'react-dom/client'
 import App from './App';
-
+import 'bootstrap/dist/css/bootstrap.css'
+import './index.css'
+// let div = document.getElementById('root');
+// div.append(App())
 
 // ReactDOM.render has been deprecated in React 18
 // Also the below ReactDOM belongs to react-dom, not react-dom/client
@@ -16,3 +19,4 @@ import App from './App';
 // React 18 code
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(<App/>);
+
