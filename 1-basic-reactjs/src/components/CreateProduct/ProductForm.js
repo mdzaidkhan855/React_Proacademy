@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function ProductForm(){
+function ProductForm(props){
 
     // document.getElementById('name').addEventListener('change', function(event){
     //     alert(event.target.value);
@@ -52,7 +52,7 @@ function ProductForm(){
 
     function availabilityInputHandler(event){
         //  Multiple state approach
-        updateAvailability(event.target.value)
+        updateAvailability(event.target.checked)
 
 
         //updateuserInput({...userInput ,pAvailable:event.target.value})
@@ -65,17 +65,36 @@ function ProductForm(){
 
         //updateuserInput({...userInput ,pImageUrl:event.target.value})
     }
-    function createProductEventHandler(){
+    function createProductEventHandler(event){
+        event.preventDefault()
 
+        let product = {
+            pName: pName, 
+            desc: pDescription,
+            isAvailable: Boolean(pAvailable),
+            image: pImageUrl,
+            price: Number(pPrice)
+        }
+
+        updateName('');
+        updatePrice('');
+        updateDescription('')
+        updateAvailability(false);
+        updateImageUrl('')
+        
+
+        props.createProduct(product)
+        props.onCancel();
     }
     return(
-        <form className="row g-3" >
+        <form className="row g-3" onSubmit={createProductEventHandler}>
         <div className="col-md-6">
             <label for="name">Product Name</label>
             <input type="text" 
                     className="form-control" 
                     id="name" 
                     placeholder="Product Name"
+                    value={pName}
                     onChange={nameInputHandler}
                      />
         </div>
@@ -86,6 +105,7 @@ function ProductForm(){
                     className="form-control" 
                     id="price" 
                     placeholder="Product Price"
+                    value={pPrice}
                     onChange={priceInputHandler}
                      />
         </div>
@@ -96,12 +116,14 @@ function ProductForm(){
                     className="form-control" 
                     id="description" 
                     placeholder="Product Description"
+                    value={pDescription}
                     onChange={descriptionInputHandler}
 
                     />
         </div>
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" role="switch" id="isAvailable"
+            checked={pAvailable}
             onChange={availabilityInputHandler}
             />
             <label class="form-check-label" for="isAvailable">Is product available in stock?</label>
@@ -110,13 +132,14 @@ function ProductForm(){
         <div className="form-group">
             <label for="select-image">Select product image</label>
             <input type="file" className="form-control" id="select-image"
+            value={pImageUrl}
             onChange={imageInputHandler}
              />
         </div>
         
 
         <button type="submit" className="btn btn-primary">Add Product</button>
-        <button type="button" >Cancel</button>
+        <button type="button" onClick={props.onCancel}>Cancel</button>
     </form>
     )
 }

@@ -33,7 +33,7 @@ function ProductDetails(props){
                 2. <Button children="222"></Button>
                  props.children will give 222
             */ } 
-            <Button eventHandler={deccrementproductCount}>-</Button>
+            <Button eventHandler={deccrementproductCount} disable={productCount === 0}>-</Button>
             <span style={{padding: "0px 20px",fontSize:30}}>{displayproductCount()}</span>
             <Button eventHandler={incrementproductCount}>+</Button>
             <span className={badgeClass}>{props.isAvailable?'Available' : 'Unavailable'}</span>
