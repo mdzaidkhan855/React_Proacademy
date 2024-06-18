@@ -4,11 +4,13 @@ import React, {useState,useEffect} from 'react'
 
 import LoginUsingState from './Components/Login/LoginUsingState';
 import LoginUsingReducer from './Components/Login/LoginUsingReducer';
+import LoginUsingContext from './Components/Login/LoginUsingContext';
 import Home from './Components/Home/Home';
-import MainHeader from './Components/MainHeader/MainHeader';
+import MainHeaderUsingContext from './Components/MainHeader/MainHeaderUsingContext';
 import Demo from './Components/ReducerDemo/Demo';
+import AuthContext from './Components/Context/AuthContext';
 
-function App() {
+function AppUsingContext() {
   let [isLoggedIn,updateIsLoggedIn] = useState(false);  
 
   // Empty dependency : useEffect called Only when page refreshed
@@ -31,12 +33,17 @@ function App() {
   }
   return (
     <React.Fragment>
-      <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
-      <main>
-        {/* {!isLoggedIn && <LoginUsingState onLogin={loginHandler}/>} */}
-        {!isLoggedIn && <LoginUsingReducer onLogin={loginHandler}/>}
-        {isLoggedIn && <Home onLogout={logoutHandler}/>}
-      </main>
+        <AuthContext.Provider value={{isLoggedIn:isLoggedIn, onLogout:logoutHandler}}>
+            {/* <MainHeaderUsingContext isAuthenticated={isLoggedIn} onLogout={logoutHandler} /> */}
+            <MainHeaderUsingContext   />
+            <main>
+                {/* {!isLoggedIn && <LoginUsingState onLogin={loginHandler}/>} */}
+                {/* {!isLoggedIn && <LoginUsingReducer onLogin={loginHandler}/>} */}
+                {!isLoggedIn && <LoginUsingContext onLogin={loginHandler}/>}
+                {isLoggedIn && <Home onLogout={logoutHandler}/>}
+            </main>
+        </AuthContext.Provider>
+      
 
       {/* <span> The below is an example for reducer</span>
       <Demo></Demo> */}
@@ -44,4 +51,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppUsingContext;

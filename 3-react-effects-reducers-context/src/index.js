@@ -2,12 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import AppStateAndReducer from './AppStateAndReducer';
+import AppUsingContext from './AppUsingContext';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    {/* <AppStateAndReducer /> */}
+    <AppUsingContext />
   </React.StrictMode>
 );
 

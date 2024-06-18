@@ -8,7 +8,7 @@ import Home from './Components/Home/Home';
 import MainHeader from './Components/MainHeader/MainHeader';
 import Demo from './Components/ReducerDemo/Demo';
 
-function App() {
+function AppStateAndReducer() {
   let [isLoggedIn,updateIsLoggedIn] = useState(false);  
 
   // Empty dependency : useEffect called Only when page refreshed
@@ -44,4 +44,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppStateAndReducer;

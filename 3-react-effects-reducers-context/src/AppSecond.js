@@ -2,13 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 import React, {useState,useEffect} from 'react'
 
-import LoginUsingState from './Components/Login/LoginUsingState';
-import LoginUsingReducer from './Components/Login/LoginUsingReducer';
+import Login from './Components/Login/Login';
 import Home from './Components/Home/Home';
 import MainHeader from './Components/MainHeader/MainHeader';
 import Demo from './Components/ReducerDemo/Demo';
 
-function App() {
+function AppSecond() {
   let [isLoggedIn,updateIsLoggedIn] = useState(false);  
 
   // Empty dependency : useEffect called Only when page refreshed
@@ -33,8 +32,7 @@ function App() {
     <React.Fragment>
       <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
       <main>
-        {/* {!isLoggedIn && <LoginUsingState onLogin={loginHandler}/>} */}
-        {!isLoggedIn && <LoginUsingReducer onLogin={loginHandler}/>}
+        {!isLoggedIn && <Login onLogin={loginHandler}/>}
         {isLoggedIn && <Home onLogout={logoutHandler}/>}
       </main>
 
@@ -44,4 +42,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppSecond;
