@@ -4,13 +4,17 @@ import './index.css';
 import App from './App';
 import AppStateAndReducer from './AppStateAndReducer';
 import AppUsingContext from './AppUsingContext';
+import {CustomAuthContextProvider} from './Components/Context/AuthContext'
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <AppStateAndReducer /> */}
-    <AppUsingContext />
+    {/* <AppUsingContext /> */}
+    <CustomAuthContextProvider>
+      <AppUsingContext />
+    </CustomAuthContextProvider>
   </React.StrictMode>
 );
 

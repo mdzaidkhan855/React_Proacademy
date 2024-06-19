@@ -79,25 +79,27 @@ const LoginUsingContext = (props) => {
   const submitHandler = (event) => {
     alert("Submitting form")
     event.preventDefault();
-    props.onLogin(emailState.value,passwordState.value)
-    // if(formIsValid){
-    //   authctx.onLogin(emailState.value, passwordState.value);
-    // } else if(!emailState.isValid){
-    //     emailRef.current.onfocus();
-    // } else {
-    //     pswdRef.current.onfocus();
-    // }
+
+    //authctx.onLogin(emailState.value,passwordState.value)
+    if(formIsValid){
+      authctx.onLogin(emailState.value, passwordState.value);
+    } else if(!emailState.isValid){
+        emailRef.current.focus();
+    } else {
+        pswdRef.current.focus();
+    }
   };
 
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
-        <div className={`${classes.control} ${
+        {/* <div className={`${classes.control} ${
             emailState.isValid === false ? classes.invalid :''
             }`}
         >
           <label htmlFor="email">Email</label>
           <input 
+            ref={emailRef}
             type="email" 
             id="email"
             value={emailState.value}
@@ -111,6 +113,7 @@ const LoginUsingContext = (props) => {
         >
         <label htmlFor="password">Password</label>
           <input 
+            ref={pswdRef}
             type="password" 
             id="password"
             value={passwordState.value}
@@ -119,9 +122,12 @@ const LoginUsingContext = (props) => {
           />
         </div>
         <div>
-          <button type="submit" disabled={!formIsValid}>login</button>
-        </div>
-        {/* <Input 
+          // <button type="submit" disabled={!formIsValid}>login</button> 
+          <Button type="submit" className={classes.btn} >
+            Login
+          </Button>
+        </div> */}
+        <Input 
           ref={emailRef}
           type="email" 
           id="email" 
@@ -143,7 +149,7 @@ const LoginUsingContext = (props) => {
           <Button type="submit" className={classes.btn}>
             Login
           </Button>
-        </div> */}
+        </div>
       </form>
     </Card>
   );
