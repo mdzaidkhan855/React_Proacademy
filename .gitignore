@@ -1,2 +1,4 @@
 **/node_modules
 ~$Architecture.pptx
+.DS_Store
+12MegaBlog/.env
